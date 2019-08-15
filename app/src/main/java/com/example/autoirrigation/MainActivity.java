@@ -1,15 +1,14 @@
 package com.example.autoirrigation;
 
 import android.os.Bundle;
-
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-
 
 import com.example.autoirrigation.Fragments.HomeFragment;
+import com.example.autoirrigation.Fragments.SecondFragment;
+import com.example.autoirrigation.Fragments.ThirdFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,9 +34,8 @@ public class MainActivity extends AppCompatActivity {
 
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance());
-        for(int i = 1; i < tabTitle.length; i++){
-            fragments.add(TabLayoutFragment.newInstance(i + 1));
-        }
+        fragments.add(SecondFragment.newInstance());
+        fragments.add(ThirdFragment.newInstance());
 
         adapter = new TabAdapter(getSupportFragmentManager(), fragments, tabTitle);
         //给viewPager设置适配器
@@ -46,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
         tabLayout.setupWithViewPager(viewPager);
 
 
-        tabLayout.getTabAt(tabLayout.getSelectedTabPosition()).setIcon(R.drawable.home_tab_selected_icon);
+        Objects.requireNonNull(tabLayout.getTabAt(tabLayout.getSelectedTabPosition())).setIcon(R.drawable.home_tab_selected_icon);
         Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.home_tab_icon);
         Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.home_tab_icon);
 

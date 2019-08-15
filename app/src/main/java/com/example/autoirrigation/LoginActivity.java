@@ -2,14 +2,11 @@ package com.example.autoirrigation;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.graphics.Color;
+import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -81,13 +78,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                 String ID = dbUtil.CheckUser(name.trim(), pwd.trim());
 
-
-
-//                if(name.equals("njfu") && pwd.equals("123456")){   //For test
-//                    Intent intent = new Intent(this, OperateActivity.class);
-//                    startActivity(intent);
-//                }
-
                 if(!ID.equals("0")){        //账号密码正确
                     //将登录账户信息保存在SharedPreferences中
                     SharedPreferences.Editor editor = sp.edit();
@@ -102,7 +92,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
 
                     //跳转到操作页面
-                    Intent intent = new Intent(this, OperateActivity.class);
+                    Intent intent = new Intent(this, MainActivity.class);
                     Bundle bundle = new Bundle();
                     bundle.putString("uname", name);
                     intent.putExtras(bundle);
@@ -124,10 +114,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.reg_button:
                 Log.d(TAG, "onClick: R.id.reg_button");
                 //register
-                /**
+                /*
                  *  .....
                  */
-                startActivity(new Intent(this, MainActivity.class));
                 break;
             default:
                 break;

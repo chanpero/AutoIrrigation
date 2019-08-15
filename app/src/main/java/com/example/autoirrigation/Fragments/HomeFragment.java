@@ -12,8 +12,8 @@ import com.example.autoirrigation.R;
 
 public class HomeFragment extends Fragment {
 
-    public static com.example.autoirrigation.OperationFragment newInstance(){
-        return new com.example.autoirrigation.OperationFragment();
+    public static HomeFragment newInstance() {
+        return new HomeFragment();
     }
 
     @Override
@@ -24,8 +24,7 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_operation, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 
 }
