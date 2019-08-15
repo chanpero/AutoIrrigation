@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".OperationFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:fitsSystemWindows="true"
+        android:layout_gravity="center_vertical"
+        android:background="@drawable/operate_bg">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="250dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/openValve"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:background="@drawable/button_ripple"
+                android:text="@string/openValve"
+                android:textColor="@color/textColor" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/closeValve"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/layout_gradient"
+                android:text="@string/closeValve"
+                android:textColor="@color/textColor" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal">
+
+            <Button
+                android:id="@+id/stopValve"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/layout_gradient"
+                android:text="@string/stopValve"
+                android:textColor="@color/textColor" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</FrameLayout>

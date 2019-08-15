@@ -1,0 +1,25 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:fitsSystemWindows">true</item>
+    </style>
+
+    <style name="checkboxTheme">
+        <!--波纹的颜色-->
+        <item name="android:colorControlHighlight">@color/colorAccent</item>
+        <!--选中的颜色-->
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+
+    <style name="LoginTheme" parent="AppTheme">
+    </style>
+
+
+    <style name="SplashTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@drawable/splash</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+</resources>
