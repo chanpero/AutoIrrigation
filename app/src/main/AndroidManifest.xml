@@ -16,7 +16,6 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".LoginActivity"
-            android:theme="@style/LoginTheme"
             android:windowSoftInputMode="adjustResize">
 
         </activity>
