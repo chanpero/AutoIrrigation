@@ -1,10 +1,22 @@
 package com.example.autoirrigation;
 
+
 import android.os.Bundle;
+import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
+import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.autoirrigation.Fragments.HomeFragment;
 import com.example.autoirrigation.Fragments.SecondFragment;
@@ -16,6 +28,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
     private TabLayout tabLayout;
+    private DrawerLayout mDrawerLayout;
     private ViewPager viewPager;
     private TabAdapter adapter;
     public static final String[] tabTitle = new String[]{"首页", "Tab2", "Tab3"};
@@ -66,6 +79,36 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        Toolbar mToolbar = findViewById(R.id.tool_bar);
+        setSupportActionBar(mToolbar);
+        ActionBar actionBar = getSupportActionBar();
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setHomeAsUpIndicator(R.drawable.nav_menu);
+        }
+
+        NavigationView navView = (NavigationView) findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(MenuItem item){
+                mDrawerLayout.closeDrawers();
+                return true;
+            }
+        });
+    }
+
+
+    //home按钮打开drawer
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch(item.getItemId()){
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+            default:
+        }
+        return true;
     }
 }
 
