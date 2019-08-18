@@ -5,13 +5,13 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/home_bg"
-    android:fitsSystemWindows="true">
+    android:background="@drawable/home_bg">
     
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true">
 
         <android.support.v7.widget.Toolbar
             android:id="@+id/tool_bar"
@@ -35,10 +35,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#fff"
-            app:tabIndicatorHeight="2dp"
+            app:tabIndicatorHeight="4dp"
+            app:tabIndicatorColor="#0BB93C"
             app:tabIndicatorGravity="top"
             app:tabSelectedTextColor="@android:color/black"
-            app:tabTextColor="@android:color/darker_gray"
+            app:tabTextColor="#968C8C"
             app:tabGravity="fill"
             app:tabMode="fixed"
             app:tabMaxWidth="0dp">
@@ -47,7 +48,7 @@
     </LinearLayout>
 
     <android.support.design.widget.NavigationView
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:id="@+id/nav_view"
         android:layout_gravity="start"
