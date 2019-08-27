@@ -11,7 +11,7 @@ public class TabAdapter extends FragmentPagerAdapter {
     private List<Fragment> fragments;
     private String[] tabTitle;
 
-    public TabAdapter(FragmentManager fm, List<Fragment> fragments, String[] tabTitle){
+    public TabAdapter(FragmentManager fm, List<Fragment> fragments, String[] tabTitle) {
         super(fm);
         this.fragments = fragments;
         this.tabTitle = tabTitle;

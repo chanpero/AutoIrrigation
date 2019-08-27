@@ -12,7 +12,10 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+import com.example.autoirrigation.Tools.BaseTool;
+import com.example.autoirrigation.Tools.DBUtil;
+
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";  //For Debug
 
     private EditText uname;
@@ -38,7 +41,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         password.setText("123456");
     }
 
-    public void init(){
+    public void init() {
         uname = findViewById(R.id.username);
         password = findViewById(R.id.password);
         rememberPwd = findViewById(R.id.rememberPwd_checkbox);
@@ -48,7 +51,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         sp = getSharedPreferences("userInfo", MODE_PRIVATE);
 
         //if remember_pwd stored in sharedPreferences
-        if(sp.getBoolean("rememberPwd", false)){
+        if (sp.getBoolean("rememberPwd", false)) {
             uname.setText(sp.getString("uname", null));
             password.setText(sp.getString("password", null));
             rememberPwd.setChecked(true);
@@ -62,27 +65,27 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //Override onclick()
     @Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.login:
                 String name = uname.getText().toString();
                 String pwd = password.getText().toString();
-                if(name.trim().equals("")){
+                if (name.trim().equals("")) {
                     Toast.makeText(this, "请您输入用户名！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(pwd.trim().equals("")){
+                if (pwd.trim().equals("")) {
                     Toast.makeText(this, "请您输入密码！", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 String ID = dbUtil.CheckUser(name.trim(), pwd.trim());
 
-                if(!ID.equals("0")){        //账号密码正确
+                if (!ID.equals("0")) {        //账号密码正确
                     //将登录账户信息保存在SharedPreferences中
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("uname", name);
                     editor.putString("password", pwd);
-                    if(rememberPwd.isChecked())
+                    if (rememberPwd.isChecked())
                         editor.putBoolean("rememberPwd", true);
                     else
                         editor.putBoolean("rememberPwd", false);
@@ -99,8 +102,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
                     //结束LoginActivity，使其onDestroy(), 而不是onStop()
                     finish();
-                }
-                else{       //账号密码错误
+                } else {       //账号密码错误
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("uname", null);
                     editor.putString("password", null);

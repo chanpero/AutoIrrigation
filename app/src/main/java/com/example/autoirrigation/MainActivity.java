@@ -15,8 +15,9 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.autoirrigation.Fragments.HomeFragment;
-import com.example.autoirrigation.Fragments.SecondFragment;
 import com.example.autoirrigation.Fragments.ThirdFragment;
+import com.example.autoirrigation.Fragments.TimingTaskFragment;
+import com.example.autoirrigation.Tools.BaseTool;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,13 +40,13 @@ public class MainActivity extends AppCompatActivity {
         initViews();
     }
 
-    private void initViews(){
+    private void initViews() {
         tabLayout = findViewById(R.id.tab_layout);
         viewPager = findViewById(R.id.viewPager);
 
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance());
-        fragments.add(SecondFragment.newInstance());
+        fragments.add(TimingTaskFragment.newInstance());
         fragments.add(ThirdFragment.newInstance());
 
         adapter = new TabAdapter(getSupportFragmentManager(), fragments, tabTitle);
@@ -58,22 +59,45 @@ public class MainActivity extends AppCompatActivity {
          * 设置底部tab样式，以及添加监听事件
          */
         Objects.requireNonNull(tabLayout.getTabAt(tabLayout.getSelectedTabPosition())).setIcon(R.drawable.home_tab_selected_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.home_tab_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.home_tab_icon);
+        Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.task_tab_icon);
+        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.task_tab_icon);
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                tab.setIcon(R.drawable.home_tab_selected_icon);
+                switch (tab.getPosition()) {
+                    case 0:
+                        setTitle(R.string.app_name);
+                        tab.setIcon(R.drawable.home_tab_selected_icon);
+                        break;
+                    case 1:
+                        setTitle("定时任务");
+                        tab.setIcon(R.drawable.task_tab_selected_icon);
+                        break;
+                    case 2:
+                        setTitle("Third Fragment");
+                        tab.setIcon(R.drawable.home_tab_selected_icon);
+                        break;
+                }
+
             }
 
             @Override
             public void onTabUnselected(TabLayout.Tab tab) {
-                tab.setIcon(R.drawable.home_tab_icon);
+                switch (tab.getPosition()) {
+                    case 0:
+                        tab.setIcon(R.drawable.home_tab_icon);
+                        break;
+                    case 1:
+                        tab.setIcon(R.drawable.task_tab_icon);
+                        break;
+                    case 2:
+                        tab.setIcon(R.drawable.home_tab_icon);
+                        break;
+                }
             }
 
             @Override
             public void onTabReselected(TabLayout.Tab tab) {
-
             }
         });
 
@@ -81,11 +105,11 @@ public class MainActivity extends AppCompatActivity {
         /**
          * 设置侧边栏home按钮
          */
-        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        mDrawerLayout = findViewById(R.id.drawer_layout);
         Toolbar mToolbar = findViewById(R.id.tool_bar);
         setSupportActionBar(mToolbar);
         ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null){
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setHomeAsUpIndicator(R.drawable.nav_menu);
         }
@@ -93,11 +117,11 @@ public class MainActivity extends AppCompatActivity {
         /**
          * 设置侧边栏MenuItem点击事件
          */
-        navView = (NavigationView) findViewById(R.id.nav_view);
-        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+        navView = findViewById(R.id.nav_view);
+        navView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(MenuItem item){
-                switch (item.getItemId()){
+            public boolean onNavigationItemSelected(MenuItem item) {
+                switch (item.getItemId()) {
                     case R.id.nav_profile:
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_LONG).show();
                         break;
@@ -121,9 +145,9 @@ public class MainActivity extends AppCompatActivity {
     //home按钮打开drawer
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch(item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
-                for(int i = 0; i < navView.getMenu().size(); i++){
+                for (int i = 0; i < navView.getMenu().size(); i++) {
                     navView.getMenu().getItem(i).setChecked(false);
                 }
                 findViewById(R.id.nav_view).setAlpha(0.8f);
