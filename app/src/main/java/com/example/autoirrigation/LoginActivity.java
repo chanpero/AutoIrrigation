@@ -5,30 +5,34 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
+import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.autoirrigation.Tools.BaseTool;
 import com.example.autoirrigation.Tools.DBUtil;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
     private static final String TAG = "MainActivity";  //For Debug
-
-    private EditText uname;
+    private EditText uphone;
     private EditText password;
-    private CheckBox rememberPwd;
     private Button login;
-    private Button register;
+    private TextView regbtn;
     private SharedPreferences sp;
     private DBUtil dbUtil;
+    private ImageView psdvisible;
+    private int clicktimes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        BaseTool.setStatusTransparent(this.getWindow());
+        //BaseTool.setStatusTransparent(this.getWindow());
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
@@ -37,58 +41,52 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         StrictMode.setThreadPolicy(policy);
 
         init();
-        uname.setText("njfu");
-        password.setText("123456");
+        //uname.setText("njfu");
+        //password.setText("123456");
     }
 
-    public void init() {
-        uname = findViewById(R.id.username);
+    public void init(){
+        uphone = findViewById(R.id.userphone);
         password = findViewById(R.id.password);
-        rememberPwd = findViewById(R.id.rememberPwd_checkbox);
         login = findViewById(R.id.login);
-        register = findViewById(R.id.reg_button);
+        regbtn = findViewById(R.id.regbtn);
+        psdvisible = findViewById(R.id.psdvisible);
+        clicktimes=0;
         dbUtil = new DBUtil();
         sp = getSharedPreferences("userInfo", MODE_PRIVATE);
 
-        //if remember_pwd stored in sharedPreferences
-        if (sp.getBoolean("rememberPwd", false)) {
-            uname.setText(sp.getString("uname", null));
-            password.setText(sp.getString("password", null));
-            rememberPwd.setChecked(true);
-        }
+        uphone.setText(sp.getString("uphone", null));
+        password.setText(sp.getString("password", null));
 
         //register Listener
         login.setOnClickListener(this);
-        register.setOnClickListener(this);
+        regbtn.setOnClickListener(this);
+        psdvisible.setOnClickListener(this);
     }
 
     //Override onclick()
-    @Override
+    //@Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch(v.getId()){
             case R.id.login:
-                String name = uname.getText().toString();
+                String phone = uphone.getText().toString();
                 String pwd = password.getText().toString();
-                if (name.trim().equals("")) {
-                    Toast.makeText(this, "请您输入用户名！", Toast.LENGTH_SHORT).show();
+                String name;
+                if(phone.trim().equals("")){
+                    Toast.makeText(this, "请您输入手机号！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if (pwd.trim().equals("")) {
+                if(pwd.trim().equals("")){
                     Toast.makeText(this, "请您输入密码！", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
-                String ID = dbUtil.CheckUser(name.trim(), pwd.trim());
-
-                if (!ID.equals("0")) {        //账号密码正确
+                name = dbUtil.CheckUser(phone.trim(), pwd.trim());
+                if(!name.equals("0")){        //账号密码正确
                     //将登录账户信息保存在SharedPreferences中
                     SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("uname", name);
+                    editor.putString("uphone", phone);
                     editor.putString("password", pwd);
-                    if (rememberPwd.isChecked())
-                        editor.putBoolean("rememberPwd", true);
-                    else
-                        editor.putBoolean("rememberPwd", false);
                     editor.apply();
 
                     Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
@@ -96,15 +94,16 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //跳转到操作页面
                     Intent intent = new Intent(this, MainActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("uname", name);
+                    bundle.putString("uname",name);
                     intent.putExtras(bundle);
                     startActivity(intent);
 
                     //结束LoginActivity，使其onDestroy(), 而不是onStop()
                     finish();
-                } else {       //账号密码错误
+                }
+                else{       //账号密码错误
                     SharedPreferences.Editor editor = sp.edit();
-                    editor.putString("uname", null);
+                    editor.putString("uphone", null);
                     editor.putString("password", null);
                     editor.putBoolean("rememberPwd", false);
                     editor.apply();
@@ -112,12 +111,21 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 }
                 break;
 
-            case R.id.reg_button:
-                Log.d(TAG, "onClick: R.id.reg_button");
-                //register
-                /*
-                 *  .....
-                 */
+            case R.id.regbtn:
+                Toast.makeText(this, "注册", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, RegisterActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.psdvisible:
+                clicktimes++;
+                if(clicktimes%2==1){
+                    psdvisible.setImageResource(R.drawable.visible);
+                    password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                }
+                else{
+                    psdvisible.setImageResource(R.drawable.invisible);
+                    password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                }
                 break;
             default:
                 break;

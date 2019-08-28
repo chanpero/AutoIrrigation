@@ -7,14 +7,13 @@
 
     <!-- 边框 -->
     <stroke
-        android:width="0.8dip"
-        android:color="#3D4148" />
+        android:width="0dp" />
 
     <!-- 圆角 -->
     <corners
-        android:bottomLeftRadius="25dip"
-        android:bottomRightRadius="25dip"
-        android:topLeftRadius="25dip"
-        android:topRightRadius="25dip" />
+        android:bottomLeftRadius="15dip"
+        android:bottomRightRadius="15dip"
+        android:topLeftRadius="15dip"
+        android:topRightRadius="15dip" />
 
 </shape>

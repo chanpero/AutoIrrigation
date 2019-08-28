@@ -120,6 +120,8 @@ public class HttpConnSoap {
                     case XmlPullParser.START_TAG:
                         if (parser.getName().equals("string")) {
                             Objects.requireNonNull(values).add(parser.nextText());
+                        }  else if (parser.getName().equals("InsertUserResult")) {
+                            Objects.requireNonNull(values).add(parser.nextText());
                         } else if (parser.getName().equals("InsertTaskResult")) {
                             Objects.requireNonNull(values).add(parser.nextText());
                         } else if (parser.getName().equals("DeleteTaskResult")) {

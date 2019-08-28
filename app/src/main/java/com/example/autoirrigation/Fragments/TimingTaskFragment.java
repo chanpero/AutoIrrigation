@@ -100,6 +100,8 @@ public class TimingTaskFragment extends Fragment {
         mTaskList = new ArrayList<>();
         List<String> returnList = new DBUtil().queryTask("njfucs123456");
         for (String str : returnList) {
+            if(str.equals("0"))         //没有任务情况
+                break;
             String[] s = str.split("/");
 //            <string>0001/open/2019/6/22/7/35/once/True</string>
             String deviceCode = s[0];

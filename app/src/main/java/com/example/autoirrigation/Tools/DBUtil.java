@@ -30,6 +30,53 @@ public class DBUtil {
     }
 
     /**
+     * Query User info from database
+     */
+    public String QueryUser(String userid){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("userid");
+        brrayList.add(userid);
+
+        crrayList = Soap.GetWebServer("QueryUser", arrayList, brrayList);
+        if(crrayList.size() > 0)
+            return crrayList.get(0);
+        else
+            return "0";
+    }
+
+    /**
+     * Insert A user into database
+     */
+    public boolean InsertUser(String userid, String username, String password, String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("userid");
+        arrayList.add("username");
+        arrayList.add("password");
+        arrayList.add("code");
+        brrayList.add(userid);
+        brrayList.add(username);
+        brrayList.add(password);
+        brrayList.add(code);
+
+        crrayList = Soap.GetWebServer("InsertUser",arrayList,brrayList);
+        if(crrayList.size() > 0){
+            if(crrayList.get(0).equals("true")){
+                return true;
+            }
+            else{
+                return false;
+            }
+        }
+        else return false;
+    }
+
+    /**
      * Insert A Task into database
      */
     public boolean insertTask(String deviceCode, String operation, String time, String circ, String code) {
