@@ -124,6 +124,8 @@ public class HttpConnSoap {
                             Objects.requireNonNull(values).add(parser.nextText());
                         } else if (parser.getName().equals("DeleteTaskResult")) {
                             Objects.requireNonNull(values).add(parser.nextText());
+                        } else if (parser.getName().equals("SwitchTaskResult")) {
+                            Objects.requireNonNull(values).add(parser.nextText());
                         }
                         break;
                 }

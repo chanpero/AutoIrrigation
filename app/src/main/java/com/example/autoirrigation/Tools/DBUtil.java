@@ -89,4 +89,26 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("QueryTask", arrayList, brrayList);
         return crrayList;
     }
+
+    public boolean switchTask(String deviceCode, String operation, String time, String circ, String isOn, String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("deviceCode");
+        arrayList.add("operation");
+        arrayList.add("time");
+        arrayList.add("circ");
+        arrayList.add("isOn");
+        arrayList.add("code");
+        brrayList.add(deviceCode);
+        brrayList.add(operation);
+        brrayList.add(time);
+        brrayList.add(circ);
+        brrayList.add(isOn);
+        brrayList.add(code);
+
+        crrayList = Soap.GetWebServer("SwitchTask", arrayList, brrayList);
+        return crrayList.get(0).equals("true");
+    }
 }
