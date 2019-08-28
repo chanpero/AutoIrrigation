@@ -12,7 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.OvershootInterpolator;
+import android.view.animation.ScaleAnimation;
 
 import com.example.autoirrigation.R;
 import com.example.autoirrigation.Task.AddTaskActivity;
@@ -24,6 +26,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+import jp.wasabeef.recyclerview.adapters.AlphaInAnimationAdapter;
+import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
+import jp.wasabeef.recyclerview.animators.FadeInLeftAnimator;
+import jp.wasabeef.recyclerview.animators.OvershootInLeftAnimator;
 import jp.wasabeef.recyclerview.animators.SlideInLeftAnimator;
 
 public class TimingTaskFragment extends Fragment {
@@ -59,7 +65,7 @@ public class TimingTaskFragment extends Fragment {
             }
         });
 
-        recyclerView.setItemAnimator(new SlideInLeftAnimator(new OvershootInterpolator(1f)));
+        recyclerView.setItemAnimator(new OvershootInLeftAnimator(2f));
 
         taskFab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -117,6 +123,6 @@ public class TimingTaskFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         TaskAdapter adapter = new TaskAdapter(mTaskList);
-        recyclerView.setAdapter(adapter);
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
     }
 }

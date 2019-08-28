@@ -98,7 +98,7 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             calendar.setTime(date);
             circMode = "每月" + calendar.get(5) + "号";
         } else {
-            time = s[0].substring(2, 4) + "年" + s[1] + "月" + s[2] + "日" + s[3] + "时" + s[4] + "分";
+            time = s[1] + "月" + s[2] + "日" + s[3] + "时" + s[4] + "分";
             circMode = "单次";
         }
         holder.taskCirc.setText(circMode);

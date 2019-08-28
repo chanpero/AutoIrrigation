@@ -40,6 +40,6 @@
             android:scaleType="center"
             app:backgroundTint="#03A9F4"
             app:rippleColor="#3F51B5"
-            app:fabSize="normal"/>
+            app:fabSize="normal" />
     </FrameLayout>
 </LinearLayout>
