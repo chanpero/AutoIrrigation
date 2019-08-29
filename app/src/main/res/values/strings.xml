@@ -14,6 +14,8 @@
 
     <string name="addTask">添加定时任务</string>
 
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string-array name="circ_array">
         <item>单次</item>
         <item>每天</item>
@@ -26,11 +28,9 @@
         <item>关闭阀门</item>
     </string-array>
 
+    <!-- TODO: Remove or change this placeholder text -->
     <string-array name="device_array">
         <item>0001</item>
         <item>0002</item>
     </string-array>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

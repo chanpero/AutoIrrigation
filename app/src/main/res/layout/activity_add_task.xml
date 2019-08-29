@@ -10,7 +10,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/addTask"
-        android:textSize="20sp"/>
+        android:textSize="20sp" />
 
 
     <LinearLayout
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="设    备: "
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <Spinner
             android:id="@+id/deviceSpinner"
@@ -34,8 +34,7 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:spinnerMode="dropdown"
-            android:layout_gravity="center">
-        </Spinner>
+            android:layout_gravity="center" />
     </LinearLayout>
 
     <LinearLayout
@@ -51,7 +50,7 @@
             android:layout_height="wrap_content"
             android:textSize="18sp"
             android:text="操    作:"
-            android:layout_gravity="center"/>
+            android:layout_gravity="center" />
 
         <Spinner
             android:id="@+id/operationSpinner"
@@ -75,7 +74,7 @@
             android:layout_width="0dp"
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
-            android:text="选择日期:"
+            android:text="开始日期:"
             android:layout_gravity="center"
             android:textSize="18sp" />
 
@@ -98,7 +97,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
         </LinearLayout>
 
 
@@ -138,7 +137,7 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="@android:color/darker_gray"/>
+                android:background="@android:color/darker_gray" />
         </LinearLayout>
     </LinearLayout>
 
@@ -154,13 +153,14 @@
             android:layout_weight="0.5"
             android:layout_height="wrap_content"
             android:text="循    环:"
-            android:textSize="18sp"/>
+            android:textSize="18sp" />
+
         <Spinner
             android:id="@+id/circSpinner"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"/>
+            android:spinnerMode="dropdown" />
 
     </LinearLayout>
 
@@ -179,7 +179,7 @@
             android:textSize="18sp"
             android:layout_gravity="start"
             android:text="取消"
-            android:foreground="?attr/selectableItemBackground"/>
+            android:foreground="?attr/selectableItemBackground" />
 
         <Button
             android:id="@+id/submitTask"
@@ -190,6 +190,6 @@
             android:textSize="18sp"
             android:layout_gravity="end"
             android:text="确认"
-            android:foreground="?attr/selectableItemBackground"/>
+            android:foreground="?attr/selectableItemBackground" />
     </LinearLayout>
 </LinearLayout>

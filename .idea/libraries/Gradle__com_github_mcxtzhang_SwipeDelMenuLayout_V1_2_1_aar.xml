@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ddcb78e6fd5f7656b388b47ea4841de/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/4ddcb78e6fd5f7656b388b47ea4841de/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/545666a5b18d012efe5cdd7d461d97ea/SwipeDelMenuLayout-V1.2.1/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/545666a5b18d012efe5cdd7d461d97ea/SwipeDelMenuLayout-V1.2.1/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

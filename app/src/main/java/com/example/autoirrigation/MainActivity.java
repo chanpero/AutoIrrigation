@@ -1,8 +1,7 @@
 package com.example.autoirrigation;
 
 
-import android.graphics.Color;
-import android.os.Build;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
@@ -14,14 +13,13 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
 import com.example.autoirrigation.Fragments.HomeFragment;
 import com.example.autoirrigation.Fragments.ThirdFragment;
 import com.example.autoirrigation.Fragments.TimingTaskFragment;
-import com.example.autoirrigation.Tools.DBUtil;
+import com.example.autoirrigation.Tools.TabAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -138,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Feedback", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.nav_about:
-                        Toast.makeText(MainActivity.this, "About", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainActivity.this, AboutActivity.class));
                         break;
                 }
                 mDrawerLayout.closeDrawers();

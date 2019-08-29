@@ -6,8 +6,7 @@
     <solid android:color="#22cd8b" />
 
     <!-- 边框 -->
-    <stroke
-        android:width="0dip" />
+    <stroke android:width="0dip" />
 
     <!-- 圆角 -->
     <corners

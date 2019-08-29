@@ -2,7 +2,7 @@
 <ripple xmlns:android="http://schemas.android.com/apk/res/android"
     android:color="#63DC0E">
     <item>
-        <shape android:shape="oval" >
+        <shape android:shape="oval">
 
             <!-- 边框 -->
             <stroke
@@ -19,12 +19,12 @@
                 android:type="linear" />
 
 
-
             <!-- 边距 -->
-            <padding android:left="5dip"
+            <padding
+                android:left="5dip"
                 android:top="5dip"
                 android:right="5dip"
-                android:bottom="5dip"/>
+                android:bottom="5dip" />
 
         </shape>
     </item>
