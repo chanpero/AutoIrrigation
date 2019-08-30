@@ -156,4 +156,16 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("SwitchTask", arrayList, brrayList);
         return crrayList.get(0).equals("true");
     }
+
+    public ArrayList<String> queryDeviceStatus(String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("code");
+        brrayList.add(code);
+
+        crrayList = Soap.GetWebServer("QueryDeviceStatus", arrayList, brrayList);
+        return crrayList;
+    }
 }
