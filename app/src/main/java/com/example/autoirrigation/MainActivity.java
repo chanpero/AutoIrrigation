@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
+import com.example.autoirrigation.DrawerActivities.Feedback.FeedbackActivity;
 import com.example.autoirrigation.Fragments.HomeFragment;
 import com.example.autoirrigation.Fragments.ThirdFragment;
 import com.example.autoirrigation.Fragments.TimingTaskFragment;
@@ -133,7 +134,7 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Setting", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.nav_feedback:
-                        Toast.makeText(MainActivity.this, "Feedback", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainActivity.this, FeedbackActivity.class));
                         break;
                     case R.id.nav_about:
                         startActivity(new Intent(MainActivity.this, AboutActivity.class));
