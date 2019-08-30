@@ -1,10 +1,8 @@
 package com.example.autoirrigation.DrawerActivities.Feedback;
 
 import android.content.Intent;
-import android.graphics.Paint;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.StrictMode;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,8 +14,8 @@ import android.widget.Toast;
 
 import com.example.autoirrigation.R;
 
-public class FeedbackActivity extends AppCompatActivity implements View.OnClickListener{
-    private Toolbar mToolbar ;
+public class FeedbackActivity extends AppCompatActivity implements View.OnClickListener {
+    private Toolbar mToolbar;
     private Button Feedbacksubmit;
     private TextView Feedbacktext;
     private TextView Feedbacktitle;
@@ -30,11 +28,11 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         Feedbacksubmit.setOnClickListener(this);
     }
 
-    public void init(){
+    public void init() {
         mToolbar = findViewById(R.id.feedback_toolbar);
         setSupportActionBar(mToolbar);
-        ActionBar actionBar =  getSupportActionBar();
-        if(actionBar != null) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
         setTitle("反馈");
@@ -46,16 +44,16 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.feedback_submit:
                 String title = Feedbacktitle.getText().toString();
                 String text = Feedbacktext.getText().toString();
-                if(title.trim().equals("")){
-                    Toast.makeText(FeedbackActivity.this,"请输入标题",Toast.LENGTH_SHORT).show();
+                if (title.trim().equals("")) {
+                    Toast.makeText(FeedbackActivity.this, "请输入标题", Toast.LENGTH_SHORT).show();
                     break;
                 }
-                if(text.trim().equals("")){
-                    Toast.makeText(FeedbackActivity.this,"请输入详细内容",Toast.LENGTH_SHORT).show();
+                if (text.trim().equals("")) {
+                    Toast.makeText(FeedbackActivity.this, "请输入详细内容", Toast.LENGTH_SHORT).show();
                     break;
                 }
                 Uri uri = Uri.parse("mailto:qianchaosolo@gmail.com");
@@ -71,7 +69,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == android.R.id.home)
+        if (item.getItemId() == android.R.id.home)
             onBackPressed();
         return super.onOptionsItemSelected(item);
     }

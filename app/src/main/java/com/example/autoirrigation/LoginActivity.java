@@ -5,13 +5,10 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,7 +16,7 @@ import android.widget.Toast;
 
 import com.example.autoirrigation.Tools.DBUtil;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener{
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
     private static final String TAG = "MainActivity";  //For Debug
     private EditText uphone;
     private EditText password;
@@ -44,13 +41,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //password.setText("123456");
     }
 
-    public void init(){
+    public void init() {
         uphone = findViewById(R.id.userphone);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
         regbtn = findViewById(R.id.regbtn);
         psdvisible = findViewById(R.id.psdvisible);
-        clicktimes=0;
+        clicktimes = 0;
         dbUtil = new DBUtil();
         sp = getSharedPreferences("userInfo", MODE_PRIVATE);
 
@@ -66,22 +63,22 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     //Override onclick()
     //@Override
     public void onClick(View v) {
-        switch(v.getId()){
+        switch (v.getId()) {
             case R.id.login:
                 String phone = uphone.getText().toString();
                 String pwd = password.getText().toString();
                 String name;
-                if(phone.trim().equals("")){
+                if (phone.trim().equals("")) {
                     Toast.makeText(this, "请您输入手机号！", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(pwd.trim().equals("")){
+                if (pwd.trim().equals("")) {
                     Toast.makeText(this, "请您输入密码！", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 name = dbUtil.CheckUser(phone.trim(), pwd.trim());
-                if(!name.equals("0")){        //账号密码正确
+                if (!name.equals("0")) {        //账号密码正确
                     //将登录账户信息保存在SharedPreferences中
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("uphone", phone);
@@ -93,14 +90,13 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //跳转到操作页面
                     Intent intent = new Intent(this, MainActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("uname",name);
+                    bundle.putString("uname", name);
                     intent.putExtras(bundle);
                     startActivity(intent);
 
                     //结束LoginActivity，使其onDestroy(), 而不是onStop()
                     finish();
-                }
-                else{       //账号密码错误
+                } else {       //账号密码错误
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString("uphone", null);
                     editor.putString("password", null);
@@ -117,11 +113,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 break;
             case R.id.psdvisible:
                 clicktimes++;
-                if(clicktimes%2==1){
+                if (clicktimes % 2 == 1) {
                     psdvisible.setImageResource(R.drawable.visible);
                     password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                }
-                else{
+                } else {
                     psdvisible.setImageResource(R.drawable.invisible);
                     password.setTransformationMethod(PasswordTransformationMethod.getInstance());
                 }

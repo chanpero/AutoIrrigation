@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.autoirrigation.MainActivity;
 import com.example.autoirrigation.R;
 import com.example.autoirrigation.Tools.DBUtil;
 
@@ -121,11 +120,10 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.ViewHolder> {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 TimingTask task = mTaskList.get(position);
-                if(isChecked) {
+                if (isChecked) {
                     if (new DBUtil().switchTask(task.getDeviceCode(), task.getOperationMode(), task.getTime(), task.getCirculationMode(), "true", "njfucs123456"))
                         Toast.makeText(buttonView.getContext(), "已打开", Toast.LENGTH_SHORT).show();
-                }
-                else {
+                } else {
                     if (new DBUtil().switchTask(task.getDeviceCode(), task.getOperationMode(), task.getTime(), task.getCirculationMode(), "false", "njfucs123456"))
                         Toast.makeText(buttonView.getContext(), "已关闭", Toast.LENGTH_SHORT).show();
                 }

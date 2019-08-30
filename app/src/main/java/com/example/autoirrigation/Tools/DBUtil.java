@@ -32,7 +32,7 @@ public class DBUtil {
     /**
      * Query User info from database
      */
-    public String QueryUser(String userid){
+    public String QueryUser(String userid) {
         arrayList.clear();
         brrayList.clear();
         crrayList.clear();
@@ -41,7 +41,7 @@ public class DBUtil {
         brrayList.add(userid);
 
         crrayList = Soap.GetWebServer("QueryUser", arrayList, brrayList);
-        if(crrayList.size() > 0)
+        if (crrayList.size() > 0)
             return crrayList.get(0);
         else
             return "0";
@@ -50,7 +50,7 @@ public class DBUtil {
     /**
      * Insert A user into database
      */
-    public boolean InsertUser(String userid, String username, String password, String code){
+    public boolean InsertUser(String userid, String username, String password, String code) {
         arrayList.clear();
         brrayList.clear();
         crrayList.clear();
@@ -64,16 +64,14 @@ public class DBUtil {
         brrayList.add(password);
         brrayList.add(code);
 
-        crrayList = Soap.GetWebServer("InsertUser",arrayList,brrayList);
-        if(crrayList.size() > 0){
-            if(crrayList.get(0).equals("true")){
+        crrayList = Soap.GetWebServer("InsertUser", arrayList, brrayList);
+        if (crrayList.size() > 0) {
+            if (crrayList.get(0).equals("true")) {
                 return true;
-            }
-            else{
+            } else {
                 return false;
             }
-        }
-        else return false;
+        } else return false;
     }
 
     /**
@@ -137,7 +135,7 @@ public class DBUtil {
         return crrayList;
     }
 
-    public boolean switchTask(String deviceCode, String operation, String time, String circ, String isOn, String code){
+    public boolean switchTask(String deviceCode, String operation, String time, String circ, String isOn, String code) {
         arrayList.clear();
         brrayList.clear();
         crrayList.clear();
