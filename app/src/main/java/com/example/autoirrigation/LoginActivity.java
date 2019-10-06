@@ -35,7 +35,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         //使用StrictMode, 阻止抛出 NetworkOnMainThreadException，SDK3以上不允许在主线程中执行网络操作
         StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
         StrictMode.setThreadPolicy(policy);
-
         init();
         //uname.setText("njfu");
         //password.setText("123456");

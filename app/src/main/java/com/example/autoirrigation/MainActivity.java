@@ -140,7 +140,6 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(new Intent(MainActivity.this, AboutActivity.class));
                         break;
                 }
-                mDrawerLayout.closeDrawers();
                 return true;
             }
         });

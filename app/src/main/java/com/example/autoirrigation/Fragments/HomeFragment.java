@@ -1,6 +1,7 @@
 package com.example.autoirrigation.Fragments;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.autoirrigation.DeviceStatus.DeviceStatus;
 import com.example.autoirrigation.DeviceStatus.deviceStatusAdapter;
@@ -30,6 +32,8 @@ public class HomeFragment extends Fragment {
     private SwipeRefreshLayout swipeRefreshLayout;
     private TextView onlineCountTV;
     private TextView offlineCountTV;
+    private Handler handler;
+    private Runnable runnable;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
@@ -63,6 +67,24 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        //设置定时检查，每分钟检查一次设备状态
+        handler =new Handler();
+        runnable =new Runnable() {
+            @Override
+            public void run() {
+                //要做的事情.updateview()
+//                Toast.makeText(getActivity(), "更新设备状态", Toast.LENGTH_SHORT).show();
+                try {
+                    updateView();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+                handler.postDelayed(this, 60000);
+            }
+        };
+
+        handler.postDelayed(runnable, 2000);
+
         return view;
     }
 
@@ -95,6 +117,12 @@ public class HomeFragment extends Fragment {
         }).start();
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacks(runnable);
+    }
+
     public void updateView() throws ParseException {
         mDeviceStatusList = new ArrayList<>();
 
@@ -115,7 +143,8 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         deviceStatusAdapter adapter = new deviceStatusAdapter(mDeviceStatusList);
-        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
+//        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
+        recyclerView.setAdapter(adapter);
 
         int onlineCount = 0;
         int offlineCount = 0;

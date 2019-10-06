@@ -4,9 +4,6 @@
     android:layout_height="120dp"
     cardview:cardCornerRadius="8dp"
     cardview:cardElevation="8dp"
-    android:clickable="true"
-    android:foreground="?attr/selectableItemBackground"
-    android:focusable="true"
     cardview:cardUseCompatPadding="true">
 
     <com.mcxtzhang.swipemenulib.SwipeMenuLayout
@@ -19,7 +16,10 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:foreground="?attr/selectableItemBackground"
+            android:focusable="true">
 
             <LinearLayout
                 android:orientation="vertical"

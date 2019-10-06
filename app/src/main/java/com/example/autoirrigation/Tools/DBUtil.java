@@ -168,4 +168,18 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("QueryDeviceStatus", arrayList, brrayList);
         return crrayList;
     }
+
+    public boolean controlValve(String controlCode, String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("controlCode");
+        arrayList.add("code");
+        brrayList.add(controlCode);
+        brrayList.add(code);
+
+        crrayList = Soap.GetWebServer("ControlValve", arrayList, brrayList);
+        return crrayList.get(0).equals("true");
+    }
 }

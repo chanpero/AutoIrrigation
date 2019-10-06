@@ -3,11 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.autoirrigation">
 
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
@@ -16,8 +11,10 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawerActivities.Feedback.FeedbackActivity"
+        <activity
+            android:name=".DrawerActivities.Feedback.FeedbackActivity"
             tools:ignore="InnerclassSeparator" />
+
         <activity
             android:name=".DrawerActivities.About.OpenSourceActivity"
             tools:ignore="InnerclassSeparator" />
@@ -28,7 +25,7 @@
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
         <activity
-            android:name=".Task.AddTaskActivity"
+            android:name=".TimingTask.AddTaskActivity"
             android:theme="@style/Theme.FloatingDialog"
             tools:ignore="InnerclassSeparator" />
         <activity
@@ -47,5 +44,15 @@
                 <action android:name="android.intent.action.VIEW" />
             </intent-filter>
         </activity>
+
+        <service
+            android:name=".TimingTask.AlarmService"
+            android:enabled="true"
+            android:exported="true" />
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
 </manifest>
