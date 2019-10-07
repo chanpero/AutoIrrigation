@@ -1,19 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Fragments.ThirdFragment">
+    android:orientation="vertical"
+    android:elevation="20dp">
 
-    <LinearLayout
-        android:orientation="vertical"
+    <com.github.mikephil.charting.charts.LineChart
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp"
+        android:layout_gravity="center"
+        android:id="@+id/linechart"/>
+
+    <View
+        android:layout_marginTop="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:background="#66BB6A"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#fff">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/app_name" />
+            android:text="设备ID"
+            android:layout_centerVertical="true"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="35dp"
+            android:textSize="18sp"/>
 
-    </LinearLayout>
-</FrameLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="浇灌时间"
+            android:layout_centerInParent="true"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="耗水量"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="35dp"
+            android:textSize="18sp"/>
+
+    </RelativeLayout>
+
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/water_history_swiperefreshlayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/water_hisotry_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+</LinearLayout>

@@ -18,7 +18,7 @@ import android.widget.Toast;
 import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
 import com.example.autoirrigation.DrawerActivities.Feedback.FeedbackActivity;
 import com.example.autoirrigation.Fragments.HomeFragment;
-import com.example.autoirrigation.Fragments.ThirdFragment;
+import com.example.autoirrigation.Fragments.IrrigationStatistic;
 import com.example.autoirrigation.Fragments.TimingTaskFragment;
 import com.example.autoirrigation.Tools.TabAdapter;
 
@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
         List<Fragment> fragments = new ArrayList<>();
         fragments.add(HomeFragment.newInstance());
         fragments.add(TimingTaskFragment.newInstance());
-        fragments.add(ThirdFragment.newInstance());
+        fragments.add(IrrigationStatistic.newInstance());
 
         adapter = new TabAdapter(getSupportFragmentManager(), fragments, tabTitle);
         //给viewPager设置适配器

@@ -25,6 +25,7 @@ public class OpenSourceActivity extends AppCompatActivity {
         openSourceList.add("com.github.mcxtzhang:SwipeDelMenuLayout:V1.2.1");
         openSourceList.add("jp.wasabeef:recyclerview-animators:2.2.7");
         openSourceList.add("com.github.arcadefire:nice-spinner:1.4.3");
+        openSourceList.add("com.github.PhilJay:MPAndroidChart:v3.0.3");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, openSourceList);
         listView.setAdapter(adapter);
