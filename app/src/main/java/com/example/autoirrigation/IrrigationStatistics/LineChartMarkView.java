@@ -33,8 +33,8 @@ public class LineChartMarkView extends MarkerView {
     @Override
     public void refreshContent(Entry e, Highlight highlight) {
         //展示自定义X轴值 后的X轴内容
-//        tvDate.setText(xAxisValueFormatter.getFormattedValue(e.getX(), null));
-        tvDate.setText("周" + WEEK[(int)e.getX() - 1]);
+        tvDate.setText(xAxisValueFormatter.getFormattedValue(e.getX(), null));
+//        tvDate.setText("周" + WEEK[(int)e.getX() - 1]);
         tvValue.setText("流量: " + e.getY() + "L");
         super.refreshContent(e, highlight);
     }

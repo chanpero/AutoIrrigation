@@ -15,12 +15,17 @@ import com.example.autoirrigation.IrrigationStatistics.Chart;
 import com.example.autoirrigation.IrrigationStatistics.IrrigationHistory;
 import com.example.autoirrigation.IrrigationStatistics.IrrigationHistoryAdapter;
 import com.example.autoirrigation.R;
+import com.example.autoirrigation.Tools.DBUtil;
+import com.example.autoirrigation.Tools.Utils;
 import com.github.mikephil.charting.charts.LineChart;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 public class IrrigationStatistic extends Fragment {
@@ -45,15 +50,16 @@ public class IrrigationStatistic extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_third, container, false);
 
-        Chart chart = new Chart((LineChart)view.findViewById(R.id.linechart), getActivity());
-        chart.initChart();
-
         recyclerView = view.findViewById(R.id.water_hisotry_recyclerview);
         layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         swipeRefreshLayout = view.findViewById(R.id.water_history_swiperefreshlayout);
 
-        initList();
+        try {
+            initList();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         mAdapter = new IrrigationHistoryAdapter(irrigationHistoryList);
         recyclerView.setAdapter(mAdapter);
@@ -72,7 +78,11 @@ public class IrrigationStatistic extends Fragment {
                         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                initList();
+                                try {
+                                    initList();
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
                                 swipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -81,17 +91,43 @@ public class IrrigationStatistic extends Fragment {
             }
         });
 
+
+
+        Chart chart = new Chart((LineChart)view.findViewById(R.id.linechart), getActivity(), irrigationHistoryList);
+        chart.initChart();
+
         return view;
     }
 
-    private void initList(){
+    private void initList() throws ParseException {
         irrigationHistoryList = new LinkedList<IrrigationHistory>();
-        for(int i = 0; i < 3; i++){
-            String id = String.valueOf(i+"号设备");
-            String time = Calendar.getInstance().getTime().toString().substring(0, 5);
-            String flow = String.valueOf(5);
-            IrrigationHistory irrigationHistory = new IrrigationHistory(id, time, flow);
-            irrigationHistoryList.add(irrigationHistory);
+
+        List<String> list = new DBUtil().queryIrrigationHistory("njfucs123456");
+        //<string>01 05 00 13 FF 00 7D FF|2019/8/31 17:03:08</string>
+        boolean lastControlCodeIsOpen = false;
+        Date beginDate = null;
+        Date endDate = null;
+        for(String s : list){
+            String[] stringArray = s.split("\\|");
+
+            if(stringArray[0].equals("01 05 00 13 00 00 3C 0F") && !lastControlCodeIsOpen)
+                continue;
+            if(stringArray[0].equals("01 05 00 13 FF 00 7D FF") && lastControlCodeIsOpen)
+                continue;
+
+            if(stringArray[0].equals("01 05 00 13 FF 00 7D FF") && !lastControlCodeIsOpen){
+                lastControlCodeIsOpen = true;
+                beginDate = Utils.parseDateString(stringArray[1], "yy/MM/dd HH:mm:ss");
+            }
+
+            if(stringArray[0].equals("01 05 00 13 00 00 3C 0F") && lastControlCodeIsOpen){
+                lastControlCodeIsOpen = false;
+                endDate = Utils.parseDateString(stringArray[1], "yy/MM/dd HH:mm:ss");
+            }
+
+            if(!lastControlCodeIsOpen && beginDate != null && endDate != null){
+                irrigationHistoryList.add(new IrrigationHistory(beginDate, endDate));
+            }
         }
     }
 }

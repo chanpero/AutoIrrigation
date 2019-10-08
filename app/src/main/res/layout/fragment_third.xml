@@ -20,7 +20,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="#fff">
+        android:background="#E2E1E1">
 
         <TextView
             android:layout_width="wrap_content"
@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="耗水量"
+            android:text="耗水量(L)"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="35dp"

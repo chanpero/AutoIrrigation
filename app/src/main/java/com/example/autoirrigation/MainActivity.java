@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private TabAdapter adapter;
     private NavigationView navView;
-    public static final String[] tabTitle = new String[]{"首页", "定时任务", "Tab3"};
+    public static final String[] tabTitle = new String[]{"首页", "定时任务", "灌溉统计"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
          */
         Objects.requireNonNull(tabLayout.getTabAt(tabLayout.getSelectedTabPosition())).setIcon(R.drawable.home_tab_selected_icon);
         Objects.requireNonNull(tabLayout.getTabAt(1)).setIcon(R.drawable.task_tab_icon);
-        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.task_tab_icon);
+        Objects.requireNonNull(tabLayout.getTabAt(2)).setIcon(R.drawable.irrigation_history_icon);
         tabLayout.addOnTabSelectedListener(new TabLayout.BaseOnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
@@ -79,8 +79,8 @@ public class MainActivity extends AppCompatActivity {
                         tab.setIcon(R.drawable.task_tab_selected_icon);
                         break;
                     case 2:
-                        setTitle("Third Fragment");
-                        tab.setIcon(R.drawable.home_tab_selected_icon);
+                        setTitle("灌溉统计");
+                        tab.setIcon(R.drawable.irrigation_history_selected_icon);
                         break;
                 }
 
@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                         tab.setIcon(R.drawable.task_tab_icon);
                         break;
                     case 2:
-                        tab.setIcon(R.drawable.home_tab_icon);
+                        tab.setIcon(R.drawable.irrigation_history_icon);
                         break;
                 }
             }

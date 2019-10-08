@@ -43,7 +43,7 @@ public class IrrigationHistoryAdapter extends RecyclerView.Adapter<IrrigationHis
         IrrigationHistory irrigationHistory = IrrigationHistoryList.get(position);
         holder.deviceId.setText(irrigationHistory.getDeviceId());
         holder.irrigationTime.setText(irrigationHistory.getIrrigationTime());
-        holder.flow.setText(irrigationHistory.getFlow());
+        holder.flow.setText(String.valueOf(irrigationHistory.getFlow()));
     }
 
     @Override

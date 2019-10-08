@@ -182,4 +182,16 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("ControlValve", arrayList, brrayList);
         return crrayList.get(0).equals("true");
     }
+
+    public ArrayList<String> queryIrrigationHistory(String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("code");
+        brrayList.add(code);
+
+        crrayList = Soap.GetWebServer("QueryIrrigationHistory", arrayList, brrayList);
+        return crrayList;
+    }
 }

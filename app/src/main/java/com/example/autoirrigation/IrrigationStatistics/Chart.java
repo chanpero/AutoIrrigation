@@ -6,6 +6,7 @@ import android.graphics.drawable.Drawable;
 
 import com.example.autoirrigation.R;
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
 import com.github.mikephil.charting.components.Description;
 import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
@@ -14,10 +15,15 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
+
+import static java.util.Collections.reverse;
 
 public class Chart {
     private LineChart lineChart;
@@ -27,14 +33,40 @@ public class Chart {
     private Legend legend;              //图例
     private LimitLine limitLine;        //限制线
 
+    private List<IrrigationHistory> allIrrigationHistoryList;
+    private List<IrrigationHistory> lastWeekIrrigationHistory;
+
+    private static String[] WEEK_NAME = {"周日", "周一", "周二", "周三", "周四", "周五", "周六"};
+
+    List<OneDayFlow> oneDayFlows;
+
     private Context context;
 
-    public Chart(LineChart lineChart, Context context) {
+    public Chart(LineChart lineChart, Context context, List<IrrigationHistory> list) {
         this.lineChart = lineChart;
         this.context = context;
+        this.allIrrigationHistoryList = list;
     }
 
     public void initChart() {
+        filterLastWeekIrrigationHistory();
+
+        initDataObjects();
+
+        setChartAppearance();
+
+        showLineChart(oneDayFlows, "一周灌溉统计", Color.LTGRAY);
+        //设置背景渐变色
+        Drawable drawable = context.getResources().getDrawable(R.drawable.fade_blue);
+        setChartFillDrawable(drawable);
+
+        setMarkerView();
+    }
+
+    /**
+     * 设置chart外观
+     */
+    public void setChartAppearance(){
         Description description = new Description();
 //        description.setText("需要展示的内容");
         description.setEnabled(false);
@@ -56,16 +88,25 @@ public class Chart {
 
         //XY轴的设置
         xAxis = lineChart.getXAxis();
-        leftYAxis = lineChart.getAxisLeft();
-        rightYaxis = lineChart.getAxisRight();
+        xAxis.setValueFormatter(new IAxisValueFormatter() {
+            @Override
+            public String getFormattedValue(float value, AxisBase axis) {
+                return oneDayFlows.get((int)value - 1).getDate();
+            }
+        });
+        xAxis.setTextSize(11f);
+        xAxis.setDrawGridLines(false);
         //X轴设置显示位置在底部
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.setAxisMinimum(1f);
         xAxis.setGranularity(1f);
+
+        leftYAxis = lineChart.getAxisLeft();
+        rightYaxis = lineChart.getAxisRight();
         //保证Y轴从0开始，不然会上移一点
         leftYAxis.setAxisMinimum(0f);
         rightYaxis.setAxisMinimum(0f);
-        xAxis.setDrawGridLines(false);
+
         rightYaxis.setDrawGridLines(false);
         leftYAxis.setDrawGridLines(true);
         leftYAxis.enableGridDashedLine(10f, 10f, 0f);
@@ -83,21 +124,48 @@ public class Chart {
         legend.setOrientation(Legend.LegendOrientation.HORIZONTAL);
         //是否绘制在图表里面
         legend.setDrawInside(false);
+    }
 
+    /**
+     * 从所有灌溉历史中过滤出上一周的灌溉历史
+     */
+    public void filterLastWeekIrrigationHistory(){
+        lastWeekIrrigationHistory = new LinkedList<>();
 
-        List<testObject> dataObjects = new LinkedList<>();
+        Calendar oneWeekAgo = Calendar.getInstance();
+        oneWeekAgo.set(Calendar.DATE, Calendar.getInstance().get(Calendar.DATE) - 6);
+        for(IrrigationHistory irrigationHistory : allIrrigationHistoryList){
+            Calendar temp = Calendar.getInstance();
+            temp.setTime(irrigationHistory.getBeginDate());
 
-        for (int i = 0; i < 7; i++) {
-            testObject newTestObject = new testObject(String.valueOf(i + 1), (i % 2 + (int) (Math.random() * 5)));
-            dataObjects.add(newTestObject);
+            if(temp.after(oneWeekAgo)){
+                lastWeekIrrigationHistory.add(irrigationHistory);
+            }
+        }
+    }
+
+    /**
+     * 初始化要显示的数据对象
+     */
+    public void initDataObjects(){
+        Calendar today = Calendar.getInstance();
+        int week = today.get(Calendar.DAY_OF_WEEK) - 1;
+
+        oneDayFlows = new LinkedList<>();
+        for(int i = 0; i < 7; i++) {
+            oneDayFlows.add(new OneDayFlow(WEEK_NAME[(week - i + 7) % 7], 0f));
+        }
+//        reverse(oneDayFlows);
+
+        for(IrrigationHistory irrigationHistory : lastWeekIrrigationHistory){
+            Calendar temp = Calendar.getInstance();
+            temp.setTime(irrigationHistory.getBeginDate());
+
+            OneDayFlow oneDayFlow = oneDayFlows.get(temp.get(Calendar.DAY_OF_WEEK) + week);
+            oneDayFlow.setFlow(oneDayFlow.getFlow() + irrigationHistory.getFlow());
         }
 
-        showLineChart(dataObjects, "一周灌溉统计", Color.LTGRAY);
-        //设置背景渐变色
-        Drawable drawable = context.getResources().getDrawable(R.drawable.fade_blue);
-        setChartFillDrawable(drawable);
-
-        setMarkerView();
+        reverse(oneDayFlows);
     }
 
     /**
@@ -133,15 +201,16 @@ public class Chart {
      * @param name     曲线名称
      * @param color    曲线颜色
      */
-    public void showLineChart(List<testObject> dataList, String name, int color) {
+    public void showLineChart(final List<OneDayFlow> dataList, String name, int color) {
         List<Entry> entries = new ArrayList<>();
+
         for (int i = 0; i < dataList.size(); i++) {
-            testObject data = dataList.get(i);
+            OneDayFlow data = dataList.get(i);
             /**
              * 在此可查看 Entry构造方法，可发现 可传入数值 Entry(float x, float y)
              * 也可传入Drawable， Entry(float x, float y, Drawable icon) 可在XY轴交点 设置Drawable图像展示
              */
-            Entry entry = new Entry(i + 1, (float) data.getValue());
+            Entry entry = new Entry(i + 1, (float)data.getFlow());
             entries.add(entry);
         }
         // 每一个LineDataSet代表一条线
@@ -177,5 +246,31 @@ public class Chart {
         mv.setChartView(lineChart);
         lineChart.setMarker(mv);
         lineChart.invalidate();
+    }
+}
+
+class OneDayFlow{
+    private String date;
+    private double flow;
+
+    OneDayFlow(String date, double flow){
+        this.date = date;
+        this.flow = flow;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public double getFlow() {
+        return flow;
+    }
+
+    public void setFlow(double flow) {
+        this.flow = flow;
     }
 }
