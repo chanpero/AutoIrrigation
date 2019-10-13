@@ -166,6 +166,7 @@ public class Chart {
         }
 
         reverse(oneDayFlows);
+        oneDayFlows.get(6).setDate("今日");
     }
 
     /**

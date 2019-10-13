@@ -80,6 +80,8 @@ public class IrrigationStatistic extends Fragment {
                             public void run() {
                                 try {
                                     initList();
+                                    mAdapter = new IrrigationHistoryAdapter(irrigationHistoryList);
+                                    recyclerView.setAdapter(mAdapter);
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
