@@ -143,8 +143,10 @@ public class HomeFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
         deviceStatusAdapter adapter = new deviceStatusAdapter(mDeviceStatusList);
+        adapter.setContext(getActivity());
 //        recyclerView.setAdapter(new ScaleInAnimationAdapter(adapter));
         recyclerView.setAdapter(adapter);
+
 
         int onlineCount = 0;
         int offlineCount = 0;

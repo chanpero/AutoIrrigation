@@ -1,5 +1,7 @@
 package com.example.autoirrigation.DeviceStatus;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -13,7 +15,12 @@ import com.example.autoirrigation.R;
 import java.util.List;
 
 public class deviceStatusAdapter extends RecyclerView.Adapter<deviceStatusAdapter.ViewHolder> {
+    private Context context;
     private List<DeviceStatus> mDeviceStatusList;
+
+    public void setContext(Context context) {
+        this.context = context;
+    }
 
     static class ViewHolder extends RecyclerView.ViewHolder {
         TextView deviceId;
@@ -34,6 +41,12 @@ public class deviceStatusAdapter extends RecyclerView.Adapter<deviceStatusAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.device_status_item, viewGroup, false);
+        view.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context, DeviceInfo.class));
+            }
+        });
         return new ViewHolder(view);
     }
 
@@ -47,6 +60,10 @@ public class deviceStatusAdapter extends RecyclerView.Adapter<deviceStatusAdapte
         else
             holder.deviceCurrentStatus.setImageResource(R.drawable.deviceoffline);
     }
+
+
+
+
 
     @Override
     public int getItemCount() {
