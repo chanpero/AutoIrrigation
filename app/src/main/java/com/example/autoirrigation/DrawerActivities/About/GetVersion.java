@@ -182,7 +182,7 @@ public class GetVersion extends AppCompatActivity{
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri uri = FileProvider.getUriForFile(context,  "com.example.autoirrigation"+ ".fileprovider", apkFile);
+            Uri uri = FileProvider.getUriForFile(context,  "com.example.autoirrigation" + ".fileprovider", apkFile);
             intent.setDataAndType(uri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");
