@@ -194,4 +194,25 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("QueryIrrigationHistory", arrayList, brrayList);
         return crrayList;
     }
+
+
+    /**
+     * Change User password from database
+     */
+    public boolean ChangePwd(String userid, String oldpwd, String newpwd, String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("userid");
+        arrayList.add("oldpassword");
+        arrayList.add("newpassword");
+        arrayList.add("code");
+        brrayList.add(userid);
+        brrayList.add(oldpwd);
+        brrayList.add(newpwd);
+        brrayList.add(code);
+        crrayList = Soap.GetWebServer("changePwd", arrayList, brrayList);
+        return crrayList.get(0).equals("true");
+    }
 }

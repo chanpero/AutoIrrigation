@@ -124,33 +124,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     Toast.makeText(this, "注册成功！", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(this, LoginActivity.class);
                     startActivity(intent);
-                }
-                ;
+                } break;
 
-                break;
-
-            case R.id.psdvisible1:
-                clicktimes1++;
-                if (clicktimes1 % 2 == 1) {
-                    psdvisible1.setImageResource(R.drawable.visible);
-                    password1.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    psdvisible1.setImageResource(R.drawable.invisible);
-                    password1.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-                break;
-
-
-            case R.id.psdvisible2:
-                clicktimes2++;
-                if (clicktimes2 % 2 == 1) {
-                    psdvisible2.setImageResource(R.drawable.visible);
-                    password2.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
-                } else {
-                    psdvisible2.setImageResource(R.drawable.invisible);
-                    password2.setTransformationMethod(PasswordTransformationMethod.getInstance());
-                }
-                break;
         }
 
     }

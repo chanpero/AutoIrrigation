@@ -49,7 +49,6 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         clicktimes = 0;
         dbUtil = new DBUtil();
         sp = getSharedPreferences("userInfo", MODE_PRIVATE);
-
         uphone.setText(sp.getString("uphone", null));
         password.setText(sp.getString("password", null));
 
@@ -89,7 +88,8 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     //跳转到操作页面
                     Intent intent = new Intent(this, MainActivity.class);
                     Bundle bundle = new Bundle();
-                    bundle.putString("uname", name);
+                    bundle.putString("uid",phone);
+                    bundle.putString("upwd",pwd);
                     intent.putExtras(bundle);
                     startActivity(intent);
 

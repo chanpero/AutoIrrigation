@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
 import com.example.autoirrigation.DrawerActivities.Feedback.FeedbackActivity;
+import com.example.autoirrigation.DrawerActivities.Setting.SettingActivity;
 import com.example.autoirrigation.Fragments.HomeFragment;
 import com.example.autoirrigation.Fragments.IrrigationStatistic;
 import com.example.autoirrigation.Fragments.TimingTaskFragment;
@@ -131,7 +132,15 @@ public class MainActivity extends AppCompatActivity {
                         Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_LONG).show();
                         break;
                     case R.id.nav_setting:
-                        Toast.makeText(MainActivity.this, "Setting", Toast.LENGTH_LONG).show();
+                        Intent intent = getIntent();
+                        String pwd = intent.getStringExtra("upwd");
+                        String id = intent.getStringExtra("uid");
+                        Intent intent1 = new Intent(MainActivity.this, SettingActivity.class);
+                        Bundle bundle = new Bundle();
+                        bundle.putString("uid", id);
+                        bundle.putString("upwd",pwd);
+                        intent1.putExtras(bundle);
+                        startActivity(intent1);
                         break;
                     case R.id.nav_feedback:
                         startActivity(new Intent(MainActivity.this, FeedbackActivity.class));

@@ -130,6 +130,8 @@ public class HttpConnSoap {
                             Objects.requireNonNull(values).add(parser.nextText());
                         } else if (parser.getName().equals("ControlValveResult")) {
                             Objects.requireNonNull(values).add(parser.nextText());
+                        } else if (parser.getName().equals("changePwdResult")) {
+                            Objects.requireNonNull(values).add(parser.nextText());
                         }
                         break;
                 }

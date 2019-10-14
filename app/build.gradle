@@ -30,9 +30,9 @@ dependencies {
     implementation 'jp.wasabeef:recyclerview-animators:2.2.7'
     implementation 'com.github.arcadefire:nice-spinner:1.4.3'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
+    implementation 'com.squareup.okhttp3:okhttp:4.2.1'
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
 }

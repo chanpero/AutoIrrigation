@@ -21,6 +21,8 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".DrawerActivities.Setting.ChangePwdActivity"></activity>
+        <activity android:name=".DrawerActivities.Setting.SettingActivity"></activity>
         <activity android:name=".DeviceStatus.DeviceInfo"></activity>
         <activity
             android:name=".DrawerActivities.Feedback.FeedbackActivity"
@@ -55,6 +57,16 @@
             </intent-filter>
         </activity>
 
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="com.example.autoirrigation.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:ignore="WrongManifestParent">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
         <service
             android:name=".TimingTask.AlarmService"
             android:enabled="true"

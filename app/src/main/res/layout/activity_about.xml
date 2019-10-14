@@ -17,7 +17,9 @@
             android:id="@+id/about_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#FFFFFF"></android.support.v7.widget.Toolbar>
+            android:background="#FFFFFF">
+
+        </android.support.v7.widget.Toolbar>
 
 
     </LinearLayout>
@@ -83,6 +85,7 @@
             android:layout_height="match_parent">
 
             <LinearLayout
+                android:id="@+id/checkUpdateLayout"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
