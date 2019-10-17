@@ -10,7 +10,6 @@
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -21,9 +20,14 @@
         android:roundIcon="@mipmap/app_icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DrawerActivities.Setting.ChangePwdActivity"></activity>
-        <activity android:name=".DrawerActivities.Setting.SettingActivity"></activity>
-        <activity android:name=".DeviceStatus.DeviceInfo"></activity>
+        <activity android:name=".DeviceStatus.OfflineDevice"
+            android:theme=""></activity>
+        <activity android:name=".DeviceStatus.OnlineDevice" />
+        <activity android:name=".DrawerActivities.Setting.ChangePwdActivity" />
+        <activity android:name=".DrawerActivities.Setting.SettingActivity" />
+        <activity
+            android:name=".DeviceStatus.DeviceInfo"
+            android:theme="@style/ActivityEntryAnimation" />
         <activity
             android:name=".DrawerActivities.Feedback.FeedbackActivity"
             tools:ignore="InnerclassSeparator" />
@@ -67,6 +71,7 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/file_paths" />
         </provider>
+
         <service
             android:name=".TimingTask.AlarmService"
             android:enabled="true"

@@ -48,7 +48,7 @@ public class IrrigationStatistic extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_third, container, false);
+        final View view = inflater.inflate(R.layout.fragment_third, container, false);
 
         recyclerView = view.findViewById(R.id.water_hisotry_recyclerview);
         layoutManager = new LinearLayoutManager(getActivity());
@@ -78,13 +78,7 @@ public class IrrigationStatistic extends Fragment {
                         Objects.requireNonNull(getActivity()).runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                try {
-                                    initList();
-                                    mAdapter = new IrrigationHistoryAdapter(irrigationHistoryList);
-                                    recyclerView.setAdapter(mAdapter);
-                                } catch (ParseException e) {
-                                    e.printStackTrace();
-                                }
+                                refreshUI(view);
                                 swipeRefreshLayout.setRefreshing(false);
                             }
                         });
@@ -99,6 +93,20 @@ public class IrrigationStatistic extends Fragment {
         chart.initChart();
 
         return view;
+    }
+
+    public void refreshUI(View view){
+        try {
+            initList();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        mAdapter = new IrrigationHistoryAdapter(irrigationHistoryList);
+        recyclerView.setAdapter(mAdapter);
+
+        Chart chart = new Chart((LineChart)view.findViewById(R.id.linechart), getActivity(), irrigationHistoryList);
+        chart.initChart();
     }
 
     private void initList() throws ParseException {

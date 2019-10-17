@@ -12,6 +12,7 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.components.LimitLine;
 import com.github.mikephil.charting.components.XAxis;
 import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.CandleEntry;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
@@ -155,13 +156,15 @@ public class Chart {
         for(int i = 0; i < 7; i++) {
             oneDayFlows.add(new OneDayFlow(WEEK_NAME[(week - i + 7) % 7], 0f));
         }
+        week++;
 //        reverse(oneDayFlows);
 
         for(IrrigationHistory irrigationHistory : lastWeekIrrigationHistory){
             Calendar temp = Calendar.getInstance();
             temp.setTime(irrigationHistory.getBeginDate());
 
-            OneDayFlow oneDayFlow = oneDayFlows.get(temp.get(Calendar.DAY_OF_WEEK) + week);
+            int index = temp.get(Calendar.DAY_OF_WEEK) >= week ? temp.get(Calendar.DAY_OF_WEEK) - week : week - temp.get(Calendar.DAY_OF_WEEK);
+            OneDayFlow oneDayFlow = oneDayFlows.get(index);
             oneDayFlow.setFlow(oneDayFlow.getFlow() + irrigationHistory.getFlow());
         }
 

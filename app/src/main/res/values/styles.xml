@@ -43,4 +43,17 @@
         <item name="android:backgroundDimEnabled">true</item>
     </style>
 
+
+    <style name="ActivityEntryAnimation" parent="@style/AppTheme">
+        <!-- 去除Activity顶部黑线 -->
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 系统状态栏背景设置透明 -->
+        <item name="android:windowDrawsSystemBarBackgrounds">@android:color/transparent</item>
+        <!-- Activity背景 -->
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <!-- 背景模糊 -->
+<!--        <item name="android:backgroundDimEnabled">true</item>-->
+        <item name="android:windowLightStatusBar">false</item>
+    </style>
 </resources>

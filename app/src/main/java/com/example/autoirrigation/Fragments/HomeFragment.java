@@ -1,11 +1,14 @@
 package com.example.autoirrigation.Fragments;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.autoirrigation.DeviceStatus.DeviceStatus;
+import com.example.autoirrigation.DeviceStatus.OfflineDevice;
+import com.example.autoirrigation.DeviceStatus.OnlineDevice;
 import com.example.autoirrigation.DeviceStatus.deviceStatusAdapter;
 import com.example.autoirrigation.R;
 import com.example.autoirrigation.Tools.DBUtil;
@@ -35,6 +40,11 @@ public class HomeFragment extends Fragment {
     private Handler handler;
     private Runnable runnable;
 
+    private Activity activity;
+    public void setActivity(Activity activity) {
+        this.activity = activity;
+    }
+
     public static HomeFragment newInstance() {
         return new HomeFragment();
     }
@@ -53,6 +63,22 @@ public class HomeFragment extends Fragment {
         recyclerView = view.findViewById(R.id.deviceStatusRecyclerView);
         onlineCountTV = view.findViewById(R.id.online_count);
         offlineCountTV = view.findViewById(R.id.offline_count);
+
+        CardView onlineCard = (CardView)view.findViewById(R.id.onlineCard);
+        onlineCard.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activity, OnlineDevice.class));
+            }
+        });
+
+        final CardView offlineCard = (CardView)view.findViewById(R.id.offlineCard);
+        offlineCard.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(activity, OfflineDevice.class));
+            }
+        });
 
         try {
             updateView();

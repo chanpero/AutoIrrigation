@@ -13,12 +13,14 @@
         android:padding="10dp">
 
         <android.support.v7.widget.CardView
+            android:id="@+id/onlineCard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            android:layout_margin="7dp">
+            android:layout_margin="7dp"
+            android:focusable="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -54,12 +56,14 @@
         </android.support.v7.widget.CardView>
 
         <android.support.v7.widget.CardView
+            android:id="@+id/offlineCard"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:clickable="true"
             android:foreground="?attr/selectableItemBackground"
-            android:layout_margin="7dp">
+            android:layout_margin="7dp"
+            android:focusable="true">
 
             <RelativeLayout
                 android:layout_width="match_parent"

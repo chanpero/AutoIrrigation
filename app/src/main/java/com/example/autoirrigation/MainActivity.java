@@ -51,12 +51,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewPager);
 
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(HomeFragment.newInstance());
+        HomeFragment homeFragment = HomeFragment.newInstance();
+        homeFragment.setActivity(this);
+        fragments.add(homeFragment);
         fragments.add(TimingTaskFragment.newInstance());
         fragments.add(IrrigationStatistic.newInstance());
 
         adapter = new TabAdapter(getSupportFragmentManager(), fragments, tabTitle);
         //给viewPager设置适配器
+        viewPager.setOffscreenPageLimit(2);
         viewPager.setAdapter(adapter);
         //将TabLayout和ViewPager关联起来
         tabLayout.setupWithViewPager(viewPager);
