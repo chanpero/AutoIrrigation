@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
         fragments.add(IrrigationStatistic.newInstance());
 
         adapter = new TabAdapter(getSupportFragmentManager(), fragments, tabTitle);
-        //给viewPager设置适配器
         viewPager.setOffscreenPageLimit(2);
+        //给viewPager设置适配器
         viewPager.setAdapter(adapter);
         //将TabLayout和ViewPager关联起来
         tabLayout.setupWithViewPager(viewPager);

@@ -26,6 +26,7 @@ public class OpenSourceActivity extends AppCompatActivity {
         openSourceList.add("jp.wasabeef:recyclerview-animators:2.2.7");
         openSourceList.add("com.github.arcadefire:nice-spinner:1.4.3");
         openSourceList.add("com.github.PhilJay:MPAndroidChart:v3.0.3");
+        openSourceList.add("com.squareup.okhttp3:okhttp:4.2.1");
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, openSourceList);
         listView.setAdapter(adapter);
