@@ -20,7 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DeviceStatus.OfflineDevice"/>
+        <activity android:name=".DeviceStatus.FloatingInputActivity"
+            android:theme="@style/Theme.FloatingDialog"></activity>
+        <activity android:name=".DeviceStatus.ActivateDeviceActivity" />
+        <activity android:name=".DeviceStatus.OfflineDevice" />
         <activity android:name=".DeviceStatus.OnlineDevice" />
         <activity android:name=".DrawerActivities.Setting.ChangePwdActivity" />
         <activity android:name=".DrawerActivities.Setting.SettingActivity" />

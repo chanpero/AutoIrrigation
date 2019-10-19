@@ -12,9 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.autoirrigation.DeviceStatus.ActivateDeviceActivity;
 import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
 import com.example.autoirrigation.DrawerActivities.Feedback.FeedbackActivity;
 import com.example.autoirrigation.DrawerActivities.Setting.SettingActivity;
@@ -44,6 +46,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         initViews();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar_menu,menu);
+        return true;
     }
 
     private void initViews() {
@@ -166,8 +174,11 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < navView.getMenu().size(); i++) {
                     navView.getMenu().getItem(i).setChecked(false);
                 }
-                findViewById(R.id.nav_view).setAlpha(0.8f);
+                findViewById(R.id.nav_view).setAlpha(0.7f);
                 mDrawerLayout.openDrawer(GravityCompat.START);
+                break;
+            case R.id.add_device_activation_menu:
+                startActivity(new Intent(this, ActivateDeviceActivity.class));
                 break;
             default:
         }

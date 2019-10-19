@@ -128,7 +128,10 @@
                 android:textAlignment="center"
                 android:textSize="18sp"
                 android:background="@drawable/button_edit"
-                android:elevation="10dp" />
+                android:elevation="10dp"
+                android:clickable="true"
+                android:foreground="?attr/selectableItemBackground"
+                android:focusable="true" />
 
         </LinearLayout>
 

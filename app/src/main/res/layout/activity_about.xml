@@ -60,7 +60,7 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:text="智能灌溉控制系统 v1.0"
+            android:text="园林智能灌溉系统 v1.0"
             android:fontFamily="sans-serif-light"
             android:textStyle="italic"
             android:textAlignment="center"
@@ -158,7 +158,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="copyright© 2019 NJFUCS"
+                android:text="Copyright© 2019 NJFU"
                 android:textSize="18sp"
                 android:textAlignment="center" />
         </LinearLayout>

@@ -14,9 +14,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.example.autoirrigation.DeviceStatus.ActivateDeviceActivity;
 import com.example.autoirrigation.DeviceStatus.DeviceStatus;
 import com.example.autoirrigation.DeviceStatus.OfflineDevice;
 import com.example.autoirrigation.DeviceStatus.OnlineDevice;
@@ -28,8 +29,6 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
-
-import jp.wasabeef.recyclerview.adapters.ScaleInAnimationAdapter;
 
 public class HomeFragment extends Fragment {
     private List<DeviceStatus> mDeviceStatusList;

@@ -35,7 +35,7 @@ public class FeedbackActivity extends AppCompatActivity implements View.OnClickL
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        setTitle("反馈");
+        setTitle("反馈建议");
 
         Feedbacksubmit = findViewById(R.id.feedback_submit);
         Feedbacktext = findViewById(R.id.feedback_text);
