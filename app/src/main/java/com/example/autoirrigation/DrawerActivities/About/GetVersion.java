@@ -13,6 +13,8 @@ import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 
+import com.example.autoirrigation.R;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -113,6 +115,8 @@ public class GetVersion extends AppCompatActivity{
         public DownloadApk(ProgressDialog dialog,Context context) {
             this.dialog = dialog;
             this.context = context;
+            this.dialog.setTitle("App下载中...");
+            this.dialog.setIcon(R.drawable.app_icon);
         }
 
         @Override
@@ -120,13 +124,14 @@ public class GetVersion extends AppCompatActivity{
             OkHttpClient client = new OkHttpClient();
             String url = "http://119.23.42.156:8080/apk/app-release.apk";
             Request request = new Request.Builder().get().url(url).build();
+            dialog.setProgressNumberFormat("%1d /%2d kb");
             try {
                 Response response = client.newCall(request).execute();
                 if (response.isSuccessful()) {
                     //获取内容总长度
-                    long contentLength = response.body().contentLength();
+                    long contentLength = response.body().contentLength()/(1024);
                     //设置最大值
-                    dialog.setMax((int) contentLength);
+                    dialog.setMax((int)(contentLength));
                     //保存到sd卡
                     File apkFile = new File(Environment.getExternalStorageDirectory(),  "test.apk");
                     fos = new FileOutputStream(apkFile);
@@ -143,7 +148,7 @@ public class GetVersion extends AppCompatActivity{
                             fos.flush();
                             progress += len;
                             //设置进度
-                            dialog.setProgress(progress);
+                            dialog.setProgress(progress/(1024));
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -182,7 +187,7 @@ public class GetVersion extends AppCompatActivity{
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-            Uri uri = FileProvider.getUriForFile(context,  "com.example.autoirrigation" + ".fileprovider", apkFile);
+            Uri uri = FileProvider.getUriForFile(context,  "com.example.autoirrigation"+ ".fileprovider", apkFile);
             intent.setDataAndType(uri, "application/vnd.android.package-archive");
         } else {
             intent.setDataAndType(Uri.fromFile(apkFile), "application/vnd.android.package-archive");

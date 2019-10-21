@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+    <!-- 边框 -->
+    <stroke android:width="0dip" />
+
+    <!-- 圆角 -->
+    <corners
+        android:bottomLeftRadius="50dip"
+        android:bottomRightRadius="50dip"
+        android:topLeftRadius="50dip"
+        android:topRightRadius="50dip" />
+
+</shape>

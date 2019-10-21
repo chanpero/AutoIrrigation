@@ -32,7 +32,7 @@ public class SettingActivity extends AppCompatActivity implements View.OnClickLi
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        setTitle("hahaha");
+        setTitle("设置");
 
 
     }

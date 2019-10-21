@@ -19,6 +19,7 @@ import android.widget.Toast;
 import com.example.autoirrigation.DeviceStatus.ActivateDeviceActivity;
 import com.example.autoirrigation.DrawerActivities.About.AboutActivity;
 import com.example.autoirrigation.DrawerActivities.Feedback.FeedbackActivity;
+import com.example.autoirrigation.DrawerActivities.Profile.ProfileActivity;
 import com.example.autoirrigation.DrawerActivities.Setting.SettingActivity;
 import com.example.autoirrigation.Fragments.HomeFragment;
 import com.example.autoirrigation.Fragments.IrrigationStatistic;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.nav_profile:
-                        Toast.makeText(MainActivity.this, "Profile", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainActivity.this, ProfileActivity.class));
                         break;
                     case R.id.nav_setting:
                         Intent intent = getIntent();

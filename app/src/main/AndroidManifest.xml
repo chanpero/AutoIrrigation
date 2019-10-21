@@ -23,6 +23,7 @@
         <activity android:name=".DeviceStatus.FloatingInputActivity"
             android:theme="@style/Theme.FloatingDialog"></activity>
         <activity android:name=".DeviceStatus.ActivateDeviceActivity" />
+        <activity android:name=".DrawerActivities.Profile.ProfileActivity"/>
         <activity android:name=".DeviceStatus.OfflineDevice" />
         <activity android:name=".DeviceStatus.OnlineDevice" />
         <activity android:name=".DrawerActivities.Setting.ChangePwdActivity" />

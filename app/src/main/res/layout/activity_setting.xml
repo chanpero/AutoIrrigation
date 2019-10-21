@@ -39,7 +39,7 @@
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
                     android:text="修改密码"
-                    android:textSize="20sp"
+                    android:textSize="15sp"
                     android:textColor="#000000"
                     android:gravity="center_vertical|left"/>
             </LinearLayout>
@@ -49,6 +49,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_height="1dp"
                 android:background="#bfbfbf"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
@@ -58,30 +59,49 @@
                     android:layout_height="match_parent"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    android:text=""
-                    android:textSize="20sp"
+                    android:text="清除缓存"
+                    android:textSize="15sp"
                     android:textColor="#000000"
                     android:gravity="center_vertical|left"/>
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_height="1dp"
                 android:background="#bfbfbf"/>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:background="#FFFFFF">
+                android:background="#FFFFFF"
+                android:orientation="horizontal">
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="7"
                     android:layout_marginRight="20dp"
                     android:layout_marginLeft="20dp"
-                    android:text=""
-                    android:textSize="20sp"
+                    android:text="自动更新"
+                    android:textSize="15sp"
                     android:textColor="#000000"
                     android:gravity="center_vertical|left"/>
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10dp"
+                    android:layout_weight="3"
+                    android:gravity="center">
+                    <Switch
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:switchMinWidth="20dp"
+                        android:textOn=""
+                        android:textOff=""
+                        android:thumb="@drawable/thumb"
+                        android:track="@drawable/track" />
+                </LinearLayout>
             </LinearLayout>
 
         </LinearLayout>

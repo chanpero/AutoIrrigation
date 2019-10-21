@@ -26,131 +26,163 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center"
-        android:weightSum="10">
+        android:weightSum="1">
 
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_weight="2.5">
+            android:layout_marginRight="30dp"
+            android:layout_marginLeft="30dp"
+            android:background="@drawable/layout_edit"
+            android:alpha="0.8"
+            android:layout_weight="0.5">
 
             <LinearLayout
-                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/editview"
-                android:weightSum="1.2">
+                android:layout_height="match_parent"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/password" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.8">
 
-                <EditText
-                    android:id="@+id/oldpwd"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="0.9"
-                    android:background="@null"
-                    android:hint="请输入旧密码"
-                    android:textSize="15sp"
-                    android:singleLine="true" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:text="密码修改"
+                        android:textAlignment="center"
+                        android:textColor="#22cd8b"
+                        android:textSize="20sp" />
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/editview"
-                android:weightSum="1.2">
+                </LinearLayout>
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/password" />
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editview"
+                    android:weightSum="1.2">
 
-                <EditText
-                    android:id="@+id/newpwd1"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="0.9"
-                    android:background="@null"
-                    android:hint="请输入新密码"
-                    android:textSize="15sp"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:imeOptions="actionDone" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/password" />
 
-            </LinearLayout>
+                    <EditText
+                        android:id="@+id/oldpwd"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.9"
+                        android:background="@null"
+                        android:hint="请输入旧密码"
+                        android:textSize="15sp"
+                        android:singleLine="true" />
+                </LinearLayout>
 
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                android:background="@drawable/editview"
-                android:weightSum="1.2">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editview"
+                    android:weightSum="1.2">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:src="@drawable/password" />
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/password" />
 
-                <EditText
-                    android:id="@+id/newpwd2"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="0.9"
-                    android:background="@null"
-                    android:hint="请确认新密码"
-                    android:textSize="15sp"
-                    android:inputType="textPassword"
-                    android:singleLine="true"
-                    android:imeOptions="actionDone" />
+                    <EditText
+                        android:id="@+id/newpwd1"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.9"
+                        android:background="@null"
+                        android:hint="请输入新密码"
+                        android:textSize="15sp"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="20dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/editview"
+                    android:weightSum="1.2">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="10dp"
+                        android:src="@drawable/password" />
+
+                    <EditText
+                        android:id="@+id/newpwd2"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="0.9"
+                        android:background="@null"
+                        android:hint="请确认新密码"
+                        android:textSize="15sp"
+                        android:inputType="textPassword"
+                        android:singleLine="true"
+                        android:imeOptions="actionDone" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp">
+
+                    <Button
+                        android:id="@+id/changebtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:text="提 交"
+                        android:textColor="#ffffff"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:background="@drawable/button_edit"
+                        android:elevation="10dp" />
+
+                </LinearLayout>
 
             </LinearLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"
-            android:layout_marginRight="25dp"
-            android:layout_marginLeft="25dp"
-            android:layout_marginTop="20dp"
-            android:weightSum="1">
-
-            <Button
-                android:id="@+id/changebtn"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="0.7"
-                android:layout_gravity="center"
-                android:text="提 交"
-                android:textColor="#ffffff"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:background="@drawable/button_edit"
-                android:elevation="10dp" />
-
+            android:layout_weight="0.2">
         </LinearLayout>
+
+
 
     </LinearLayout>
 

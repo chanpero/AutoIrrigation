@@ -215,4 +215,20 @@ public class DBUtil {
         crrayList = Soap.GetWebServer("changePwd", arrayList, brrayList);
         return crrayList.get(0).equals("true");
     }
+
+    /**
+     * Get username from database
+     */
+    public String getUser(String userid, String code){
+        arrayList.clear();
+        brrayList.clear();
+        crrayList.clear();
+
+        arrayList.add("userid");
+        arrayList.add("code");
+        brrayList.add(userid);
+        brrayList.add(code);
+        crrayList = Soap.GetWebServer("getUser", arrayList, brrayList);
+        return crrayList.get(0);
+    }
 }
